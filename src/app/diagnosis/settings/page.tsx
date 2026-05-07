@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 
 type ChiefComplaint = 'diarrhea' | 'vomiting' | 'skin';
@@ -146,8 +145,87 @@ function Toast({
 }
 
 export default function SettingsPage() {
-  const router = useRouter();
-  const [authChecked, setAuthChecked] = useState(false);
+  const [isAuthorized, setIsAuthorized] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const isAdmin = localStorage.getItem('isAdmin') === 'true';
+    setIsAuthorized(isAdmin);
+  }, []);
+
+  if (isAuthorized === false) {
+    return <AdminLoginPrompt onLogin={() => setIsAuthorized(true)} />;
+  }
+
+  if (isAuthorized === null) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-background">
+        <div className="size-10 animate-spin rounded-full border-4 border-primary/20 border-t-primary" />
+      </div>
+    );
+  }
+
+  return <SettingsContent />;
+}
+
+function AdminLoginPrompt({ onLogin }: { onLogin: () => void }) {
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(false);
+
+  function handleSubmit() {
+    if (password === 'peco2026') {
+      localStorage.setItem('isAdmin', 'true');
+      onLogin();
+    } else {
+      setError(true);
+    }
+  }
+
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+      <div className="w-full max-w-sm rounded-2xl bg-surface p-8 shadow-lg">
+        <div className="mb-6 flex justify-center">
+          <div className="flex size-14 items-center justify-center rounded-full bg-primary text-2xl font-bold text-white">
+            P
+          </div>
+        </div>
+        <h2 className="mb-6 text-center text-xl font-bold text-primary">管理者ログイン</h2>
+        <input
+          type="password"
+          placeholder="パスワードを入力"
+          value={password}
+          onChange={(e) => {
+            setPassword(e.target.value);
+            setError(false);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') handleSubmit();
+          }}
+          className="mb-3 min-h-12 w-full rounded-xl border-2 border-text-secondary/20 px-4 text-base outline-none focus:border-primary"
+        />
+        {error && (
+          <p className="mb-3 text-sm text-triage-red">パスワードが違います</p>
+        )}
+        <button
+          type="button"
+          onClick={handleSubmit}
+          className="min-h-14 w-full rounded-xl bg-primary text-base font-bold text-white shadow-md active:scale-[0.99] active:bg-primary-dark hover:bg-primary-dark"
+        >
+          ログイン
+        </button>
+        <div className="mt-4 text-center">
+          <Link
+            href="/diagnosis"
+            className="text-sm text-text-secondary hover:text-primary"
+          >
+            ← 診断画面に戻る
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SettingsContent() {
   const [active, setActive] = useState<ChiefComplaint>('diarrhea');
   const [original, setOriginal] = useState<SettingsFile | null>(null);
   const [draft, setDraft] = useState<SettingsFile | null>(null);
@@ -157,19 +235,7 @@ export default function SettingsPage() {
     null,
   );
 
-  // Admin gate via localStorage
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    if (window.localStorage.getItem('isAdmin') === 'true') {
-      setAuthChecked(true);
-    } else {
-      router.replace('/diagnosis');
-    }
-  }, [router]);
-
-  // Load settings whenever the active tab changes (and we're authorized)
-  useEffect(() => {
-    if (!authChecked) return;
     let cancelled = false;
     setLoading(true);
     fetch(`/api/diagnosis/settings?complaint=${active}`)
@@ -194,7 +260,7 @@ export default function SettingsPage() {
     return () => {
       cancelled = true;
     };
-  }, [active, authChecked]);
+  }, [active]);
 
   const dirty = useMemo(() => {
     if (!original || !draft) return false;
@@ -264,38 +330,30 @@ export default function SettingsPage() {
     }
   }
 
-  if (!authChecked) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-background text-text-secondary">
-        管理者認証を確認中…
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen bg-background pb-32 text-text-primary">
       <header className="sticky top-0 z-30 bg-primary text-white shadow-md">
         <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-6 py-4">
           <div className="flex items-center gap-3">
             <Link
-              href="/diagnosis"
-              className="flex size-12 items-center justify-center rounded-full bg-white/15 text-xl hover:bg-white/25"
-              aria-label="診断画面へ戻る"
+              href="/"
+              aria-label="トップページへ"
+              className="flex items-center gap-3 rounded-xl px-1 py-1 hover:bg-white/10"
             >
-              ←
-            </Link>
-            <div>
-              <div className="text-2xl font-bold leading-none tracking-wide">
-                トリアージ設定
+              <div className="flex size-12 items-center justify-center rounded-full bg-white text-primary text-xl font-bold">
+                P
               </div>
-              <div className="text-xs opacity-90">管理者専用 · 閾値とトリアージレベル</div>
-            </div>
+              <div>
+                <div className="text-2xl font-bold leading-none tracking-wide">PECO</div>
+                <div className="text-xs opacity-90">トリアージ設定 · 管理者専用</div>
+              </div>
+            </Link>
           </div>
           <Link
             href="/diagnosis"
             className="hidden min-h-12 items-center rounded-xl bg-white/15 px-4 text-base font-semibold hover:bg-white/25 md:flex"
           >
-            診断画面
+            ← 診断画面
           </Link>
         </div>
         <div className="mx-auto flex max-w-5xl gap-2 overflow-x-auto px-6 pb-4">
