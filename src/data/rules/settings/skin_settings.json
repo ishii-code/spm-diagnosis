@@ -1,0 +1,14 @@
+{
+  "complaint": "skin",
+  "rules": {
+    "lesion_area": { "local": "GREEN", "widespread": "YELLOW" },
+    "itch_score": { "yellow_threshold": 5, "red_threshold": 9 },
+    "energy": { "normal": "GREEN", "decreased": "YELLOW", "absent": "RED" },
+    "fever": { "yes": "RED", "no": "GREEN" },
+    "severe_pain": { "yes": "RED", "no": "GREEN" },
+    "rapid_necrosis": { "yes": "RED", "no": "GREEN" },
+    "pustules_or_crusts": { "yes": "YELLOW", "no": "GREEN" },
+    "ear_symptoms": { "yes": "YELLOW", "no": "GREEN" },
+    "recurrence": { "yes": "YELLOW", "no": "GREEN" }
+  }
+}

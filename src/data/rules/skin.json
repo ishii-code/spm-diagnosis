@@ -1,0 +1,329 @@
+{
+  "id": "skin",
+  "label_ja": "皮膚症状",
+  "interview": {
+    "nurse": [
+      "かゆみスコア0〜10",
+      "発症時期",
+      "部位",
+      "季節性",
+      "耳症状",
+      "ノミダニ予防",
+      "食事",
+      "同居動物/人の皮膚症状",
+      "既往薬"
+    ],
+    "vet": [
+      "年齢発症",
+      "再発パターン",
+      "前回反応薬",
+      "ステロイド/抗菌薬/抗真菌薬歴",
+      "シャンプー歴",
+      "膿皮症歴",
+      "皮膚腫瘤の増大速度",
+      "全身症状"
+    ]
+  },
+  "triage": {
+    "GREEN": {
+      "conditions": [
+        "局所性",
+        "元気食欲あり",
+        "軽度掻痒",
+        "表在性病変"
+      ],
+      "initial_actions": [
+        "皮膚細胞診",
+        "外部寄生虫評価",
+        "外用・駆虫・掻痒管理"
+      ],
+      "followup_hours": 336,
+      "refer_to_center": false
+    },
+    "YELLOW": {
+      "conditions": [
+        "広範囲",
+        "強い掻痒",
+        "膿疱/痂皮",
+        "外耳炎併発",
+        "再発",
+        "治療歴あり",
+        "深部感染疑い"
+      ],
+      "initial_actions": [
+        "皮膚細胞診",
+        "掻爬",
+        "毛検査",
+        "必要時DTM/培養"
+      ],
+      "followup_hours": 168,
+      "refer_to_center": false
+    },
+    "RED": {
+      "conditions": [
+        "発熱",
+        "重度疼痛",
+        "急速拡大する壊死/蜂窩織炎",
+        "全身状態悪化",
+        "免疫抑制",
+        "重度薬疹疑い"
+      ],
+      "initial_actions": [
+        "CBC",
+        "生化学",
+        "電解質",
+        "細菌培養",
+        "鎮痛後センター病院紹介"
+      ],
+      "followup_hours": 0,
+      "refer_to_center": true
+    },
+    "CHRONIC": {
+      "conditions": [
+        "慢性/再発性掻痒",
+        "アトピー疑い",
+        "食事反応性疑い"
+      ],
+      "initial_actions": [
+        "食事歴確認",
+        "ノミ予防確認",
+        "皮膚/耳細胞診",
+        "除去食試験4〜8週以上"
+      ],
+      "followup_hours": 336,
+      "refer_to_center": false
+    }
+  },
+  "tests": [
+    {
+      "situation": "かゆみ・赤み",
+      "items": [
+        "皮膚細胞診",
+        "ノミ取り櫛",
+        "皮膚掻爬",
+        "耳垢細胞診"
+      ],
+      "decision_point": "感染、マラセチア、外部寄生虫を先に確認。アトピーは除外診断。"
+    },
+    {
+      "situation": "膿疱・痂皮・表皮小環",
+      "items": [
+        "皮膚細胞診",
+        "再発/深部/ロッド菌/治療失敗では細菌培養・感受性"
+      ],
+      "decision_point": "抗菌薬前に細胞診を行う。"
+    },
+    {
+      "situation": "脱毛・フケ・環状病変",
+      "items": [
+        "抜毛検査",
+        "皮膚掻爬",
+        "DTM/皮膚糸状菌検査",
+        "ウッド灯"
+      ],
+      "decision_point": "皮膚糸状菌は人獣共通感染リスクを説明。"
+    },
+    {
+      "situation": "慢性/再発性掻痒",
+      "items": [
+        "食事歴",
+        "ノミ予防確認",
+        "皮膚/耳細胞診",
+        "除去食試験4〜8週以上"
+      ],
+      "decision_point": "感染・寄生虫を先に除外したうえで食事試験を実施。"
+    },
+    {
+      "situation": "皮膚腫瘤",
+      "items": [
+        "FNA細胞診を原則提案"
+      ],
+      "decision_point": "急速増大・潰瘍・固着・2cm超などは早期紹介。"
+    }
+  ],
+  "treatments": [
+    {
+      "situation": "細胞診：球菌少数/表在性・限局",
+      "treatment": "局所洗浄・薬用シャンプーによる外用治療。",
+      "refer_to_center": false,
+      "drugs": [
+        {
+          "name": "マラセブシャンプーまたは酢酸クロルヘキシジンシャンプー",
+          "dose": "週2回",
+          "duration": "3〜4週"
+        },
+        {
+          "name": "5%ヒビテン液",
+          "dose": "希釈洗浄（局所）",
+          "duration": "症状に応じて"
+        }
+      ]
+    },
+    {
+      "situation": "細胞診：細菌多数、広範囲、深部",
+      "treatment": "全身抗菌薬を選択。犬・猫/混合感染で薬剤選択。",
+      "refer_to_center": false,
+      "drugs": [
+        {
+          "name": "セファクリア錠75/300（セファレキシン）",
+          "dose": "犬：15mg/kg PO q12h",
+          "duration": "初回7日"
+        },
+        {
+          "name": "クラバセプチン錠50/250",
+          "dose": "猫/混合感染：12.5mg/kg PO q12h",
+          "duration": "7日"
+        }
+      ]
+    },
+    {
+      "situation": "マラセチア陽性",
+      "treatment": "薬用シャンプーを基本に、広範囲・重度では全身抗真菌薬。",
+      "refer_to_center": false,
+      "drugs": [
+        {
+          "name": "マラセブシャンプー",
+          "dose": "週2回",
+          "duration": "3〜4週"
+        },
+        {
+          "name": "イトラコナゾール錠50mg",
+          "dose": "5mg/kg PO q24h",
+          "duration": "広範囲・重度時"
+        }
+      ]
+    },
+    {
+      "situation": "外部寄生虫",
+      "treatment": "犬・猫それぞれに適した駆虫薬を選択。",
+      "refer_to_center": false,
+      "drugs": [
+        {
+          "name": "シンパリカトリオ",
+          "dose": "犬・体重別",
+          "duration": "月1回"
+        },
+        {
+          "name": "ネクスガードスペクトラ",
+          "dose": "犬・体重別",
+          "duration": "月1回"
+        },
+        {
+          "name": "レボリューションプラス",
+          "dose": "猫・体重別",
+          "duration": "月1回"
+        },
+        {
+          "name": "ネクスガードキャットコンボ",
+          "dose": "猫・体重別",
+          "duration": "月1回"
+        },
+        {
+          "name": "ブロードライン",
+          "dose": "猫・体重別",
+          "duration": "月1回"
+        }
+      ]
+    },
+    {
+      "situation": "感染・寄生虫評価後の強い掻痒（犬）",
+      "treatment": "JAK阻害薬または抗IL-31モノクローナル抗体で掻痒コントロール。",
+      "refer_to_center": false,
+      "drugs": [
+        {
+          "name": "アポキル錠",
+          "dose": "0.4〜0.6mg/kg PO q12h、最大14日後q24h",
+          "duration": "症状に応じて"
+        },
+        {
+          "name": "サイトポイント",
+          "dose": "1mg/kg SC",
+          "duration": "月1回"
+        }
+      ]
+    },
+    {
+      "situation": "慢性アトピー管理",
+      "treatment": "免疫調整薬による長期管理。保湿補助を併用。",
+      "refer_to_center": false,
+      "drugs": [
+        {
+          "name": "シクロスポリン",
+          "dose": "5mg/kg PO q24h",
+          "duration": "長期"
+        },
+        {
+          "name": "デルモセント製品",
+          "dose": "保湿補助として併用",
+          "duration": "長期"
+        }
+      ]
+    },
+    {
+      "situation": "急性炎症で感染が否定的",
+      "treatment": "短期ステロイドで炎症コントロール。",
+      "refer_to_center": false,
+      "drugs": [
+        {
+          "name": "プレドニゾロン錠",
+          "dose": "犬0.5〜1mg/kg/day、猫1〜2mg/kg/day",
+          "duration": "短期"
+        }
+      ]
+    }
+  ],
+  "followup": [
+    {
+      "category": "GREEN",
+      "timing": "急性掻痒/外用治療：7〜14日",
+      "checkpoints": [
+        "掻痒スコア",
+        "病変写真",
+        "細胞診再検",
+        "外用遵守"
+      ]
+    },
+    {
+      "category": "YELLOW",
+      "timing": "膿皮症で全身抗菌薬：7〜14日",
+      "checkpoints": [
+        "細胞診",
+        "膿疱/痂皮",
+        "再発原因",
+        "治療失敗なら培養"
+      ]
+    },
+    {
+      "category": "YELLOW",
+      "timing": "マラセチア：2〜4週",
+      "checkpoints": [
+        "臭気",
+        "脂漏",
+        "細胞診",
+        "シャンプー頻度"
+      ]
+    },
+    {
+      "category": "CHRONIC",
+      "timing": "アレルギー/アトピー：初回2〜4週、その後1〜3か月",
+      "checkpoints": [
+        "感染再発",
+        "耳症状",
+        "ノミ予防",
+        "食事試験",
+        "長期薬の副作用"
+      ]
+    },
+    {
+      "category": "GREEN",
+      "timing": "皮膚腫瘤：FNA実施後結果説明。様子見の場合は2〜4週",
+      "checkpoints": [
+        "サイズ",
+        "写真",
+        "潰瘍",
+        "固着",
+        "増大速度"
+      ]
+    }
+  ]
+}

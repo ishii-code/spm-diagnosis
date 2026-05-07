@@ -1,0 +1,291 @@
+{
+  "id": "vomiting",
+  "label_ja": "嘔吐",
+  "interview": {
+    "nurse": [
+      "発症時刻",
+      "回数",
+      "最後に吐いた時刻",
+      "吐物内容",
+      "食欲",
+      "飲水",
+      "下痢",
+      "排尿",
+      "元気",
+      "腹痛",
+      "誤食・中毒",
+      "薬剤歴"
+    ],
+    "vet": [
+      "吐出/嚥下困難との区別",
+      "空嘔吐",
+      "腹部膨満",
+      "血液混入",
+      "体重減少",
+      "PU/PD",
+      "既往歴",
+      "NSAIDs/ステロイド",
+      "ワクチン",
+      "慢性化",
+      "猫の無食期間"
+    ]
+  },
+  "triage": {
+    "GREEN": {
+      "conditions": [
+        "単発〜少数回",
+        "元気・飲水あり",
+        "腹痛なし",
+        "脱水なし〜軽度",
+        "誤食なし"
+      ],
+      "initial_actions": [
+        "身体検査",
+        "食事指導",
+        "必要時セレニア錠/注"
+      ],
+      "followup_hours": 48,
+      "refer_to_center": false
+    },
+    "YELLOW": {
+      "conditions": [
+        "反復嘔吐",
+        "食欲低下",
+        "軽度脱水",
+        "下痢併発",
+        "若齢/高齢",
+        "基礎疾患",
+        "猫の食欲低下"
+      ],
+      "initial_actions": [
+        "CBC",
+        "生化学",
+        "電解質",
+        "尿検査",
+        "腹部X線/超音波を検討",
+        "補液・制吐"
+      ],
+      "followup_hours": 24,
+      "refer_to_center": false
+    },
+    "RED": {
+      "conditions": [
+        "持続嘔吐",
+        "経口摂取不能",
+        "虚脱",
+        "強い腹痛",
+        "腹部膨満",
+        "血様嘔吐",
+        "誤食/閉塞疑い",
+        "猫の24時間以上無食",
+        "尿道閉塞疑い"
+      ],
+      "initial_actions": [
+        "原則センター病院紹介",
+        "酸素・保温・IV確保",
+        "CBC/生化学/電解質",
+        "腹部画像"
+      ],
+      "followup_hours": 0,
+      "refer_to_center": true
+    },
+    "CHRONIC": {
+      "conditions": [
+        "慢性化した嘔吐",
+        "体重減少を伴う"
+      ],
+      "initial_actions": [
+        "CBC、生化学、電解質、尿検査",
+        "T4（高齢猫）、B12、TLI、膵マーカー",
+        "腹部超音波"
+      ],
+      "followup_hours": 336,
+      "refer_to_center": false
+    }
+  },
+  "tests": [
+    {
+      "situation": "単発嘔吐で全身安定",
+      "items": [
+        "身体検査",
+        "必要時糞便検査",
+        "尿検査"
+      ],
+      "decision_point": "明らかな誤食・腹痛がなければ経過観察も可。"
+    },
+    {
+      "situation": "反復嘔吐/食欲低下",
+      "items": [
+        "CBC",
+        "生化学",
+        "電解質",
+        "尿検査",
+        "腹部X線または超音波"
+      ],
+      "decision_point": "脱水、腎肝膵疾患、糖尿病、電解質異常、閉塞を評価。"
+    },
+    {
+      "situation": "腹痛・異物疑い",
+      "items": [
+        "腹部X線2方向",
+        "腹部超音波",
+        "必要時造影/センター紹介"
+      ],
+      "decision_point": "制吐で隠さず、閉塞・穿孔・GDVを除外。"
+    },
+    {
+      "situation": "猫の嘔吐・食欲不振",
+      "items": [
+        "CBC",
+        "生化学",
+        "電解質",
+        "尿検査",
+        "腹部超音波",
+        "膵マーカーを検討"
+      ],
+      "decision_point": "猫は食欲廃絶のリスクが高く早期再評価。"
+    },
+    {
+      "situation": "慢性/体重減少",
+      "items": [
+        "CBC",
+        "生化学",
+        "電解質",
+        "尿検査",
+        "T4（高齢猫）",
+        "B12",
+        "TLI",
+        "膵マーカー",
+        "腹部超音波"
+      ],
+      "decision_point": "代謝・内分泌・消化器の慢性疾患を段階的に評価。"
+    }
+  ],
+  "treatments": [
+    {
+      "situation": "閉塞が否定的な急性嘔吐",
+      "treatment": "制吐治療。経口可能なら錠剤に切替。",
+      "refer_to_center": false,
+      "drugs": [
+        {
+          "name": "セレニア注",
+          "dose": "1mg/kg SC q24h",
+          "duration": "最大5日"
+        },
+        {
+          "name": "セレニア錠（犬で経口可能な場合）",
+          "dose": "2mg/kg PO q24h",
+          "duration": "最大5日"
+        }
+      ]
+    },
+    {
+      "situation": "胃内容停滞疑い",
+      "treatment": "消化管運動改善薬の使用。",
+      "refer_to_center": false,
+      "drugs": [
+        {
+          "name": "プロナミド錠5mg",
+          "dose": "犬0.25〜1mg/kg PO q12h",
+          "duration": "2〜4日"
+        },
+        {
+          "name": "プリンペラン錠5",
+          "dose": "0.2〜0.5mg/kg q8〜12h",
+          "duration": "症状に応じて"
+        }
+      ]
+    },
+    {
+      "situation": "吐血・メレナ・NSAIDs関連",
+      "treatment": "胃酸分泌抑制と粘膜保護。",
+      "refer_to_center": false,
+      "drugs": [
+        {
+          "name": "オメプラゾール10mg",
+          "dose": "0.7〜1mg/kg PO q24h",
+          "duration": "病態に応じて"
+        },
+        {
+          "name": "ガスターD錠10",
+          "dose": "0.5〜1mg/kg q12〜24h",
+          "duration": "病態に応じて"
+        },
+        {
+          "name": "アルサルミン内用液10%",
+          "dose": "0.25〜1g/頭 q8〜12h",
+          "duration": "病態に応じて"
+        }
+      ]
+    },
+    {
+      "situation": "脱水・電解質異常",
+      "treatment": "補液による水和・電解質補正。低容量血症はIV安定化後センター病院紹介。",
+      "refer_to_center": true,
+      "drugs": [
+        {
+          "name": "ソルラクト輸液または生理食塩液",
+          "dose": "軽度脱水は皮下10〜20mL/kg",
+          "duration": "改善まで"
+        }
+      ]
+    },
+    {
+      "situation": "異物・閉塞・強い腹痛",
+      "treatment": "鎮痛後、センター病院紹介。",
+      "refer_to_center": true,
+      "drugs": [
+        {
+          "name": "ブプレノルフィン注0.2mg",
+          "dose": "0.01〜0.02mg/kg",
+          "duration": "単回〜紹介まで"
+        }
+      ]
+    }
+  ],
+  "followup": [
+    {
+      "category": "GREEN",
+      "timing": "24〜48時間",
+      "checkpoints": [
+        "嘔吐回数",
+        "飲水",
+        "食欲",
+        "元気",
+        "下痢",
+        "腹痛",
+        "嘔吐が続く場合は再診"
+      ]
+    },
+    {
+      "category": "YELLOW",
+      "timing": "翌日再診",
+      "checkpoints": [
+        "体重",
+        "水和",
+        "電解質",
+        "腎肝膵指標",
+        "画像所見"
+      ]
+    },
+    {
+      "category": "YELLOW",
+      "timing": "猫の食欲低下：24時間以内",
+      "checkpoints": [
+        "摂食量",
+        "体重",
+        "脱水",
+        "肝リピドーシスリスク"
+      ]
+    },
+    {
+      "category": "RED",
+      "timing": "センター病院からの逆紹介後48〜72時間以内",
+      "checkpoints": [
+        "原因疾患",
+        "食事再開",
+        "薬剤継続"
+      ]
+    }
+  ]
+}

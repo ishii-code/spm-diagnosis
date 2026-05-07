@@ -1,0 +1,51 @@
+{
+  "complaint": "vomiting",
+  "rules": {
+    "vomiting_count": {
+      "yellow_threshold": 3,
+      "red_threshold": 999
+    },
+    "last_vomiting_hours": {
+      "red_threshold": 0
+    },
+    "energy": {
+      "normal": "GREEN",
+      "decreased": "YELLOW",
+      "absent": "RED"
+    },
+    "appetite": {
+      "normal": "GREEN",
+      "decreased": "YELLOW",
+      "absent": "RED"
+    },
+    "dehydration": {
+      "none": "GREEN",
+      "mild": "GREEN",
+      "moderate": "YELLOW",
+      "severe": "RED"
+    },
+    "abdominal_pain": {
+      "yes": "RED",
+      "no": "GREEN"
+    },
+    "abdominal_distension": {
+      "yes": "RED",
+      "no": "GREEN"
+    },
+    "blood_in_vomit": {
+      "yes": "RED",
+      "no": "GREEN"
+    },
+    "aspiration_suspected": {
+      "yes": "RED",
+      "no": "GREEN"
+    },
+    "cat_no_food_hours": {
+      "red_threshold": 24
+    },
+    "urethral_obstruction_suspected": {
+      "yes": "RED",
+      "no": "GREEN"
+    }
+  }
+}

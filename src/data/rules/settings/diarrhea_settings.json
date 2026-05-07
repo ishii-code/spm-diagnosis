@@ -1,0 +1,13 @@
+{
+  "complaint": "diarrhea",
+  "rules": {
+    "duration_days": { "chronic_threshold": 14 },
+    "energy": { "normal": "GREEN", "decreased": "YELLOW", "absent": "RED" },
+    "appetite": { "normal": "GREEN", "decreased": "YELLOW", "absent": "RED" },
+    "dehydration": { "none": "GREEN", "mild": "GREEN", "moderate": "YELLOW", "severe": "RED" },
+    "vomiting": { "none": "GREEN", "single": "GREEN", "repeated": "YELLOW", "persistent": "RED" },
+    "blood_in_stool": { "yes_stable": "YELLOW", "yes_unstable": "RED" },
+    "aspiration_suspected": { "yes": "RED", "no": "GREEN" },
+    "abdominal_pain": { "yes": "YELLOW", "no": "GREEN" }
+  }
+}
