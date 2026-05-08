@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
+import { PecoHeader } from '@/components/peco';
 
 type ChiefComplaint = 'diarrhea' | 'vomiting' | 'skin';
 type TriageLevel = 'GREEN' | 'YELLOW' | 'RED' | 'CHRONIC';
@@ -332,31 +333,22 @@ function SettingsContent() {
 
   return (
     <div className="min-h-screen bg-background pb-32 text-text-primary">
-      <header className="sticky top-0 z-30 bg-primary text-white shadow-md">
-        <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-6 py-4">
-          <div className="flex items-center gap-3">
-            <Link
-              href="/"
-              aria-label="トップページへ"
-              className="flex items-center gap-3 rounded-xl px-1 py-1 hover:bg-white/10"
-            >
-              <div className="flex size-12 items-center justify-center rounded-full bg-white text-primary text-xl font-bold">
-                P
-              </div>
-              <div>
-                <div className="text-2xl font-bold leading-none tracking-wide">PECO</div>
-                <div className="text-xs opacity-90">トリアージ設定 · 管理者専用</div>
-              </div>
-            </Link>
-          </div>
+      <PecoHeader
+        logoHref="/"
+        logoSubtitle="トリアージ設定 · 管理者専用"
+        showAlertBell={false}
+        showUserMenu={false}
+        rightSlot={
           <Link
             href="/diagnosis"
-            className="hidden min-h-12 items-center rounded-xl bg-white/15 px-4 text-base font-semibold hover:bg-white/25 md:flex"
+            className="hidden min-h-10 items-center rounded-md bg-peco-primary-subtle px-4 text-sm font-semibold text-peco-text-primary hover:bg-peco-primary-light md:inline-flex"
           >
             ← 診断画面
           </Link>
-        </div>
-        <div className="mx-auto flex max-w-5xl gap-2 overflow-x-auto px-6 pb-4">
+        }
+      />
+      <div className="sticky top-14 z-40 border-b border-gray-200 bg-peco-bg">
+        <div className="mx-auto flex max-w-5xl gap-2 overflow-x-auto px-6 py-3">
           {COMPLAINT_TABS.map((tab) => {
             const isActive = tab.id === active;
             return (
@@ -364,10 +356,10 @@ function SettingsContent() {
                 key={tab.id}
                 type="button"
                 onClick={() => switchTab(tab.id)}
-                className={`flex min-h-12 items-center gap-2 rounded-full px-5 text-base font-semibold transition ${
+                className={`flex min-h-10 items-center gap-2 rounded-full px-4 text-sm font-semibold transition ${
                   isActive
-                    ? 'bg-white text-primary-dark shadow-sm'
-                    : 'bg-white/15 text-white hover:bg-white/25'
+                    ? 'bg-peco-primary text-peco-text-primary shadow-sm'
+                    : 'bg-peco-gray-100 text-peco-text-primary hover:bg-peco-primary-light'
                 }`}
               >
                 <span aria-hidden>{tab.icon}</span>
@@ -376,7 +368,7 @@ function SettingsContent() {
             );
           })}
         </div>
-      </header>
+      </div>
 
       <main className="mx-auto max-w-5xl px-6 py-8">
         {loading || !draft ? (

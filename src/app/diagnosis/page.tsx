@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
+import { PecoHeader } from '@/components/peco';
 
 type ChiefComplaint = 'diarrhea' | 'vomiting' | 'skin';
 type TriageLevel = 'GREEN' | 'YELLOW' | 'RED' | 'CHRONIC';
@@ -371,34 +372,25 @@ export default function DiagnosisPage() {
 
   return (
     <div className="min-h-screen bg-background pb-24 text-text-primary">
-      <header className="sticky top-0 z-30 bg-primary text-white shadow-md">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-          <Link
-            href="/"
-            aria-label="トップページへ"
-            className="flex items-center gap-3 rounded-xl px-1 py-1 hover:bg-white/10"
-          >
-            <div className="flex size-12 items-center justify-center rounded-full bg-white text-primary text-xl font-bold">
-              P
-            </div>
-            <div>
-              <div className="text-2xl font-bold leading-none tracking-wide">PECO</div>
-              <div className="text-xs opacity-90">動物医療センター 診断支援</div>
-            </div>
-          </Link>
+      <PecoHeader
+        logoHref="/"
+        logoSubtitle="動物医療センター 診断支援"
+        showAlertBell={false}
+        showUserMenu={false}
+        rightSlot={
           <div className="flex items-center gap-3">
             <StepIndicator step={step} />
             <Link
               href="/diagnosis/settings"
               aria-label="トリアージ設定（管理者）"
               title="トリアージ設定（管理者）"
-              className="flex size-12 items-center justify-center rounded-full bg-white/15 text-xl hover:bg-white/25 active:scale-95"
+              className="inline-flex size-10 items-center justify-center rounded-full bg-peco-primary-subtle text-xl hover:bg-peco-primary-light active:scale-95"
             >
               ⚙️
             </Link>
           </div>
-        </div>
-      </header>
+        }
+      />
 
       <main className="mx-auto max-w-5xl px-6 py-8">
         {step === 1 && <Step1 onSelect={selectComplaint} loading={loading} />}
